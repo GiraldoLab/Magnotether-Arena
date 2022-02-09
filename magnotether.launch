@@ -1,0 +1,5 @@
+<launch>
+   <node name="image_converter"   pkg="magno_test"   type="ion3_twyg_control.py" />
+   <node name="shuffle_sun"   pkg="basic_led_strip_ros"   type="shuffle_sun_node.py" />
+   <!-- <include file = "" /> -->
+</launch>
