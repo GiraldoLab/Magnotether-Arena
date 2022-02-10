@@ -5,6 +5,7 @@ import sys
 import rospy
 import numpy as np
 from copy import copy
+from std_msgs.msg import Header #Need this for SunInfo? 2/9
 from std_msgs.msg import String
 from  basic_led_strip_proxy import BasicLedStripProxy
 from basic_led_strip import BasicLedStrip
@@ -32,7 +33,6 @@ class ShuffleSun:
         sun_msg = SunInfo()
         sun_msg.header.stamp = rospy.Time.now()
         sun_msg.sun_position = self.current_sun_position
-        sun_msg.time = datetime.datetime.now()
         rospy.loginfo('Sun Info:' + str(sun_msg)) #shows what is being published as a message
         self.sun_position_pub.publish(sun_msg)
     
@@ -59,8 +59,8 @@ class ShuffleSun:
             """
             sun_sampling = self.sun_sample_no_replacement()
             procedure = [
-                            [self.dark,30],
-                            [sun_sampling,60],
+                            [self.dark,1],
+                            [sun_sampling,2],
                             [sun_sampling,60],
                             [self.dark,30],
                         ]
